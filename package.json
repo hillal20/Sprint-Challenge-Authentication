@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/LambdaSchool/Sprint-Challenge-Authentication#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "bcrypt": "^2.0.1",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
@@ -26,6 +27,8 @@
     "jsonwebtoken": "^8.2.1",
     "mongoose": "^5.1.1",
     "node-fetch": "^1.7.3",
-    "nodemon": "^1.17.4"
+    "nodemon": "^1.17.4",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2"
   }
 }
