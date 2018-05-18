@@ -1,12 +1,21 @@
-const User = require('../models/userModels');
-const bcrypt = require('bcrypt');
+const User = require("../models/userModels");
+const bcrypt = require("bcrypt");
+const express = require("express");
+const router = express.Router();
+const { makeToken } = require("../../config");
 
-const createUser = (req, res) => {
-  const { username, password } = req.body;
-  // create user takes in the username and password and saves a user.
-  // our pre save hook should kick in here saving this user to the DB with an encrypted password.
-};
+router.post("/", (req, res) => {
+  const newUser = new User(req.body);
+  newUser
+    .save()
+    .then(p => {
+      console.log("user", p);
+      const token = makeToken(p);
+      res.status(200).json({ msg: "register successfully", p, token });
+    })
+    .catch(err => {
+      res.json({ msg: "not able to register you" });
+    });
+});
 
-module.exports = {
-  createUser
-};
+module.exports = router;
