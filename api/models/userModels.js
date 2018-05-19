@@ -29,11 +29,15 @@ UserSchema.pre("save", function(next) {
   });
 });
 
-UserSchema.methods.checkPassword = function(passwordGuess, cb) {
-  bcrypt.compare(passwordGuess, this.password, (err, isMatch) => {
-    if (err) return cb(err);
-    cb(null, isMatch);
-  });
+// UserSchema.methods.checkPassword = function(passwordGuess, cb) {
+//   bcrypt.compare(passwordGuess, this.password, (err, result) => {
+//     if (err) return cb(err);
+//     cb(null, result);
+//   });
+// };
+
+UserSchema.methods.checkPassword = function(passwordGuess) {
+  return bcrypt.compare(passwordGuess, this.password);
 };
 
 module.exports = mongoose.model("User", UserSchema);

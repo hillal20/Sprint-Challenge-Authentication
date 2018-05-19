@@ -4,6 +4,7 @@ import { Route } from "react-router-dom";
 import Register from "./register.js";
 import Login from "./login.js";
 import Jokes from "./jokes.js";
+import { withRouter } from "react-router-dom";
 class App extends Component {
   render() {
     return (
@@ -17,4 +18,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

@@ -13,7 +13,7 @@ class Jokes extends Component {
     const token = localStorage.getItem("token");
     console.log("storageToken", token);
     const obj = {
-      headers: { Authorization: token }
+      headers: { Authorization: `${token}` }
     };
 
     const promise = axios.get("http://localhost:5000/api/jokes", obj);
@@ -29,10 +29,19 @@ class Jokes extends Component {
   componentDidMount = () => {
     this.fetchingJokes();
   };
+  logOut = () => {
+    localStorage.removeItem("token");
+    this.props.history.push("/login");
+  };
 
   render() {
     return (
       <div>
+        {localStorage.getItem("token") && (
+          <div>
+            <button onClick={this.logOut}> log-out</button>
+          </div>
+        )}
         jokes list
         {this.state.jokes.map((joke, i) => {
           return (
